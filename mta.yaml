@@ -1,0 +1,52 @@
+ID: wavepress
+_schema-version: '2.1'
+version: 0.0.1
+modules:
+  - name: db
+    type: hdb
+    path: db
+    requires:
+      - name: hdi_db
+        properties:
+          TARGET_CONTAINER: '~{hdi-container-name}'
+      - name: WAVEPRESS_SVC
+        group: SERVICE_REPLACEMENTS
+        properties:
+          key: ServiceName_1
+          service: ~{wavepress-service-name}
+  - name: api
+    type: nodejs
+    path: api
+    provides:
+     - name: api_api
+       properties:
+          url: ${default-url}
+          service: '~{wavepress-service-name}'
+    requires:
+     - name: db
+     - name: hdi_db
+     - name: WAVEPRESS_UAA
+  - name: ui
+    type: html5
+    path: ui
+    requires:
+     - name: WAVEPRESS_UAA
+     - name: api_api
+       properties:
+         name: core-backend
+         url: '~{url}'
+         forwardAuthToken: true
+       group: destinations
+resources:
+  - name: hdi_db
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container
+  - name: WAVEPRESS_SVC
+    parameters:
+      service-name: CROSS_SCHEMA_SVC
+    properties:
+      wavepress-service-name: '${service-name}'
+    type: org.cloudfoundry.existing-service
+  - name: WAVEPRESS_UAA
+    type: com.sap.xs.uaa-space

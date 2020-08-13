@@ -1,0 +1,26 @@
+<<<<<<< Upstream, based on origin/master
+{
+	"name": "wavepress-approuter",
+	"engines": {
+		"node": ">=4.0.0 <9.0.0"
+	},
+	"dependencies": {
+		"@sap/approuter": "6.1.0"
+	},
+	"scripts": {
+		"start": "node node_modules/@sap/approuter/approuter.js"
+	}
+=======
+{
+	"name": "wavepress-approuter",
+	"engines": {
+		"node": ">=4.0.0 <9.0.0"
+	},
+	"dependencies": {
+		"@sap/approuter": "6.1.0"
+	},
+	"scripts": {
+		"start": "node node_modules/@sap/approuter/approuter.js"
+	}
+>>>>>>> 2328fa6 ui and api modules. includes devices endpoint
+}

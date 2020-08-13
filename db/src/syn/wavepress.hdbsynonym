@@ -1,0 +1,15 @@
+{
+  "wavepress.db.syn::DEVICES": {
+    "target": {
+      "object": "DEVICES",
+      "schema": "WAVEPRESS",
+      "database": "SYSTEMDB"
+    }
+  },
+  "wavepress.db.syn::DUMMY": {
+    "target": {
+      "object": "DUMMY",
+      "schema": "SYS"
+    }
+  }
+} 

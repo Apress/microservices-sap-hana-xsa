@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="wavepress.db.models::CV_DEVICES" applyPrivilegeType="NONE" dataCategory="DIMENSION" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CV_DEVICES"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="wavepress.db.syn::DEVICES">
+    <resourceUri>wavepress.db.syn::DEVICES</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="p_devices">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="DE_UUID"/>
+      <viewAttribute id="TEMP_F"/>
+      <viewAttribute id="REC_DT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="wavepress.db.syn::DEVICES"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="p_devices">
+  <attributes>
+    <attribute id="ID" order="1" semanticType="empty">
+      <descriptions defaultDescription="Identity"/>
+      <keyMapping columnObjectName="p_devices" columnName="ID"/>
+    </attribute>
+    <attribute id="DE_UUID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Device Identifier"/>
+      <keyMapping columnObjectName="p_devices" columnName="DE_UUID"/>
+    </attribute>
+    <attribute id="TEMP_F" order="3" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Temperature Fahrenheit"/>
+      <keyMapping columnObjectName="p_devices" columnName="TEMP_F"/>
+    </attribute>
+    <attribute id="REC_DT" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Record timestamp"/>
+      <keyMapping columnObjectName="p_devices" columnName="REC_DT"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="p_devices" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

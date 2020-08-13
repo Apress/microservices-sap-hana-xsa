@@ -1,0 +1,52 @@
+<<<<<<< Upstream, based on origin/master
+{
+	"welcomeFile": "webapp/index.html",
+	"authenticationMethod": "route",
+	"routes": [
+		{
+		"source": "/wpsvc(.*)",
+		"destination": "core-backend",
+		"csrfProtection": true,
+		"authenticationType": "xsuaa"
+	}, {
+		"source": "(.*)(.xsjs)",
+		"destination": "core-backend",
+		"csrfProtection": true,
+		"authenticationType": "xsuaa"	
+	}, {
+		"source": "/(.*)",
+		"localDir" : "resources",
+		"authenticationType": "xsuaa",
+		"replace": {
+			"pathSuffixes" : ["index.html"],
+			"vars": ["ui5liburl"]
+		}
+	}
+	]
+=======
+{
+	"welcomeFile": "webapp/index.html",
+	"authenticationMethod": "route",
+	"routes": [
+		{
+		"source": "/wpsvc(.*)",
+		"destination": "core-backend",
+		"csrfProtection": true,
+		"authenticationType": "xsuaa"
+	}, {
+		"source": "(.*)(.xsjs)",
+		"destination": "core-backend",
+		"csrfProtection": true,
+		"authenticationType": "xsuaa"	
+	}, {
+		"source": "/(.*)",
+		"localDir" : "resources",
+		"authenticationType": "xsuaa",
+		"replace": {
+			"pathSuffixes" : ["index.html"],
+			"vars": ["ui5liburl"]
+		}
+	}
+	]
+>>>>>>> 2328fa6 ui and api modules. includes devices endpoint
+}

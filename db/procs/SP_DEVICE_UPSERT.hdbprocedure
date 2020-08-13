@@ -1,0 +1,30 @@
+PROCEDURE "wavepress.db.procs::SP_DEVICE_UPSERT"(
+		IN IN_DEVICE TABLE("ID" INT, "DE_UUID" NVARCHAR(20), "TEMP_F" DECIMAL(10, 2), "REC_DT" SECONDDATE)
+	, OUT OUT_ID INT
+	)
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --READS SQL DATA 
+   AS
+BEGIN
+   
+   vDevice = SELECT TOP 1 in_d.* 
+			 FROM "wavepress.db.syn::DEVICES" d
+				INNER JOIN :IN_DEVICE in_d ON d."ID" = in_d."ID";
+				
+	IF( IS_EMPTY(:vDevice) ) THEN
+		INSERT INTO "wavepress.db.syn::DEVICES" ("DE_UUID", "TEMP_F", "REC_DT")
+		SELECT "DE_UUID", "TEMP_F", NOW() FROM :IN_DEVICE;
+		
+		SELECT CURRENT_IDENTITY_VALUE() INTO OUT_ID FROM "wavepress.db.syn::DUMMY";
+	ELSE 
+		UPDATE dd
+		SET "TEMP_F" = in_d."TEMP_F", "REC_DT" = NOW()
+		FROM "wavepress.db.syn::DEVICES" dd
+			INNER JOIN :vDevice in_d ON dd."ID" = in_d."ID";
+		
+		SELECT TOP 1 "ID" INTO OUT_ID FROM :vDevice;
+			
+   END IF;
+   
+END
